@@ -1,0 +1,25 @@
+{
+  "name": "lab3",
+  "version": "1.0.0",
+  "description": "lab 3, SE",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenzelinli/SE3316_Lab3_sli737.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevenzelinli/SE3316_Lab3_sli737/issues"
+  },
+  "homepage": "https://github.com/stevenzelinli/SE3316_Lab3_sli737#readme"
+}
