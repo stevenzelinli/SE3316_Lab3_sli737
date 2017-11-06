@@ -45,8 +45,9 @@ router.route('/messages')
     .post(function(req, res) {
         var message = new Message();      
         message.content = req.body.content;  // set message text
+        message.course = req.body.course;
         message.timestamp = new Date().getTime();
-        // save the timestamp and check for errors
+        // save the message and check for errors
         message.save(function(err) {
             if (err)
                 res.send(err);
@@ -63,11 +64,11 @@ router.route('/messages')
         });
     });
 
-router.route('/messages/:message_id')
+router.route('/messages/:course')
 
     // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
     .get(function(req, res) {
-        Message.findById(req.params.message_id, function(err, message) {
+        Message.find({"course":req.params.course}, function(err, message) {
             if (err)
                 res.send(err);
             res.json(message);
@@ -76,7 +77,7 @@ router.route('/messages/:message_id')
     // delete the bear with this id (accessed at DELETE http://localhost:8080/api/bears/:bear_id)
     .delete(function(req, res) {
         Message.remove({
-            _id: req.params.message_id
+            "course": req.params.course
         }, function(err, bear) {
             if (err)
                 res.send(err);
@@ -84,6 +85,7 @@ router.route('/messages/:message_id')
             res.json({ message: 'Successfully deleted' });
         });
     });
+
     
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
