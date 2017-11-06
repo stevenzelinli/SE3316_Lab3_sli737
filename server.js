@@ -8,6 +8,7 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
+var path = require('path');
 mongoose.connect('mongodb://localhost:27017/messages');
 
 var Message     = require('./app/models/message');
@@ -30,9 +31,9 @@ router.use(function(req, res, next) {
     next(); // make sure we go to the next routes and don't stop here
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+// sends main html page for the messaging board
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+    res.sendFile(path.join(__dirname + '/messaging.html'));
     //console.log(req);
 });
 
@@ -66,23 +67,12 @@ router.route('/messages')
 
 router.route('/messages/:course')
 
-    // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
+    // get the message associated with the course
     .get(function(req, res) {
-        Message.find({"course":req.params.course}, function(err, message) {
+        Message.find({"course":req.params.course}, function(err, messages) {
             if (err)
                 res.send(err);
-            res.json(message);
-        });
-    })
-    // delete the bear with this id (accessed at DELETE http://localhost:8080/api/bears/:bear_id)
-    .delete(function(req, res) {
-        Message.remove({
-            "course": req.params.course
-        }, function(err, bear) {
-            if (err)
-                res.send(err);
-
-            res.json({ message: 'Successfully deleted' });
+            res.json(messages);
         });
     });
 

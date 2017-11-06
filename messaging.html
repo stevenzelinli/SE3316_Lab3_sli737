@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <title>Messaging Board</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-        });
-    </script>
+    
   </head>
   <body>
       <h1>
@@ -17,53 +14,27 @@
           SE3316
       </h2>
       <ol id="SE3316">
-          <li id=0></li>
-          <li id=1></li>
-          <li id=2></li>
-          <li id=3></li>
-          <li id=4></li>
-          <li id=5></li>
-          <li id=6></li>
-          <li id=7></li>
-          <li id=8></li>
-          <li id=9></li>
-          <li id=10></li>
-          <li id=11></li>
-          <li id=12></li>
-          <li id=13></li>
-          <li id=14></li>
-          <li id=15></li>
-          <li id=16></li>
-          <li id=17></li>
-          <li id=18></li>
-          <li id=19></li>
       </ol>
       <input type="text" id="3316msg" value="Message"/><button type="button">Send</button>
       <h2>
           SE3352
       </h2>
       <ol id="SE3352">
-          <li id=0></li>
-          <li id=1></li>
-          <li id=2></li>
-          <li id=3></li>
-          <li id=4></li>
-          <li id=5></li>
-          <li id=6></li>
-          <li id=7></li>
-          <li id=8></li>
-          <li id=9></li>
-          <li id=10></li>
-          <li id=11></li>
-          <li id=12></li>
-          <li id=13></li>
-          <li id=14></li>
-          <li id=15></li>
-          <li id=16></li>
-          <li id=17></li>
-          <li id=18></li>
-          <li id=19></li>
       </ol>
       <input type="text" id="3352msg" value="Message"/><button type="button">Send</button>
+      <script>
+        $(document).ready(function(){
+          $.getJSON("https://lab3-sli737-wulios.c9users.io/api/messages/SE3316", function (data){
+            var message_list = JSON.parse(data);
+            message_list.sort(function(a,b){
+              b.timestamp - a.timestamp;
+            });
+            alert(message_list);
+            for(var x = 0; x < 20; x++){
+              $("#3316").append("<li>"+message_list[x].content+" : "+(new Date(1446309338000).toString(message_list[x].timestamp))+"</li>");
+            }
+          })
+        });
+    </script>
   </body>
 </html>
