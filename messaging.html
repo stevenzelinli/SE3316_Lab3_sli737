@@ -50,6 +50,18 @@
         });
 
       }, 1000);
+      
+      //SETTING EVENT LISTENERS
+      //3316 SEND BOX
+      $("#3316").click(function(){
+        var query = "course=SE3316&"+$("#3316msg").serialize();
+        $.post("https://lab3-sli737-wulios.c9users.io/api/messages", query);
+      });
+      //3352 SEND BOX
+      $("#3352").click(function(){
+        var query = "course=SE3352&"+$("#3352msg").serialize();
+        $.post("https://lab3-sli737-wulios.c9users.io/api/messages", query);
+      });
     });
   </script>
 </head>
@@ -83,7 +95,7 @@
     <li></li>
     <li></li>
   </ol>
-  <input type="text" id="3316msg" value="Message" /><button type="button">Send</button>
+  <input type="text" id="3316msg" value="Message" name="content"/><button type="button" id="3316">Send</button>
   <h2>
     SE3352
   </h2>
@@ -109,7 +121,7 @@
     <li></li>
     <li></li>
   </ol>
-  <input type="text" id="3352msg" value="Message" /><button type="button">Send</button>
+  <input type="text" id="3352msg" value="Message" name="content"/><button type="button" id="3352">Send</button>
 </body>
 
 </html>
