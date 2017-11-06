@@ -4,7 +4,7 @@ var Schema       = mongoose.Schema;
 var MessageSchema   = new Schema({
     timestamp: String,
     content: String,
-    course: String
+    course: String,
 });
 
 module.exports = mongoose.model('Message', MessageSchema);

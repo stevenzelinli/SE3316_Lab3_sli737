@@ -4,7 +4,53 @@
     <meta charset="UTF-8">
     <title>Messaging Board</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+     <script>
+        $(document).ready(function(){
+          $("h1").text("Best Messaging Board");
+          
+          //LOADING SE3316
+          $.getJSON("https://lab3-sli737-wulios.c9users.io/api/messages/SE3316", function (data){
+            data.sort(function(a,b){
+              b.timestamp - a.timestamp;
+            });
+            for(var x = 0; x < 20; x++){
+              $("#SE3316").append("<li>"+data[x].content+" : "+data[x].timestamp+"</li>");
+            }
+          });
+          //LOADING SE3352
+          $.getJSON("https://lab3-sli737-wulios.c9users.io/api/messages/SE3352", function (data){
+            data.sort(function(a,b){
+              b.timestamp - a.timestamp;
+            });
+            for(var x = 0; x < 20; x++){
+              $("#SE3352").append("<li>"+data[x].content+" : "+data[x].timestamp+"</li>");
+            }
+          });
+          
+          //SETTING REFRESH RATE OF MESSAGES
+          setInterval(function(){
+            $("#SE3316").empty();
+            $.getJSON("https://lab3-sli737-wulios.c9users.io/api/messages/SE3316", function (data){
+            data.sort(function(a,b){
+              b.timestamp - a.timestamp;
+            });
+            for(var x = 0; x < 20; x++){
+              $("#SE3316").append("<li>"+data[x].content+" : "+data[x].timestamp+"</li>");
+            }
+            });
+            $("#SE3352").empty();
+            $.getJSON("https://lab3-sli737-wulios.c9users.io/api/messages/SE3352", function (data){
+            data.sort(function(a,b){
+              b.timestamp - a.timestamp;
+            });
+            for(var x = 0; x < 20; x++){
+              $("#SE3352").append("<li>"+data[x].content+" : "+data[x].timestamp+"</li>");
+            }
+          });
+          
+          }, 1000);
+        });
+    </script>
   </head>
   <body>
       <h1>
@@ -22,19 +68,5 @@
       <ol id="SE3352">
       </ol>
       <input type="text" id="3352msg" value="Message"/><button type="button">Send</button>
-      <script>
-        $(document).ready(function(){
-          $.getJSON("https://lab3-sli737-wulios.c9users.io/api/messages/SE3316", function (data){
-            var message_list = JSON.parse(data);
-            message_list.sort(function(a,b){
-              b.timestamp - a.timestamp;
-            });
-            alert(message_list);
-            for(var x = 0; x < 20; x++){
-              $("#3316").append("<li>"+message_list[x].content+" : "+(new Date(1446309338000).toString(message_list[x].timestamp))+"</li>");
-            }
-          })
-        });
-    </script>
   </body>
 </html>
