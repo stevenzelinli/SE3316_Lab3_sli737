@@ -8,14 +8,13 @@
   <script>
     $(document).ready(function() {
       $("h1").text("Best Messaging Board");
-
       //LOADING SE3316
       $.getJSON("https://lab3-sli737-wulios.c9users.io/api/messages/SE3316", function(data) {
         data.sort(function(a, b) {
           return b.timestamp - a.timestamp;
         });
         $("#SE3316").children("li").each(function(index) {
-          $(this).text(data[index].content + " : " + data[index].timestamp);
+          $(this).text(data[index].content + " : " + (new Date(parseInt(data[index].timestamp))).toLocaleString());
         });
       });
       //LOADING SE3352
@@ -24,7 +23,7 @@
           return b.timestamp - a.timestamp;
         });
         $("#SE3352").children("li").each(function(index) {
-          $(this).text(data[index].content + " : " + data[index].timestamp);
+          $(this).text(data[index].content + " : " + (new Date(parseInt(data[index].timestamp))).toLocaleString());
         });
       });
 
@@ -36,7 +35,7 @@
             return b.timestamp - a.timestamp;
           });
           $("#SE3316").children("li").each(function(index) {
-            $(this).text(data[index].content + " : " + data[index].timestamp);
+            $(this).text(data[index].content + " : " + (new Date(parseInt(data[index].timestamp))).toLocaleString());
           });
         });
         //UPDATING SE3352
@@ -45,7 +44,7 @@
             return b.timestamp - a.timestamp;
           });
           $("#SE3352").children("li").each(function(index) {
-            $(this).text(data[index].content + " : " + data[index].timestamp);
+            $(this).text(data[index].content + " : " + (new Date(parseInt(data[index].timestamp))).toLocaleString());
           });
         });
 
